@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP1 · 交互式 2D 分形（Sierpinski 垫片）</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: #0b0b12; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; color: #ddd; }
+  #glCanvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; cursor: grab; }
+  #glCanvas:active { cursor: grabbing; }
+  #panel {
+    position: fixed; top: 16px; left: 16px;
+    background: rgba(22,22,34,0.88);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+    width: 252px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    user-select: none;
+  }
+  #panel h1 { font-size: 15px; margin: 0 0 6px; }
+  .group { margin: 10px 0; }
+  .group > label { display: block; font-size: 12px; color: #9aa; margin-bottom: 4px; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  input[type=range] { width: 100%; cursor: pointer; }
+  select { font-size: 13px; }
+  .radio-group label { display: block; margin: 3px 0; font-size: 13px; cursor: pointer; }
+  input:disabled + span { opacity: 0.35; }
+  input[type=range]:disabled { opacity: 0.35; }
+  .val { color: #fff; font-variant-numeric: tabular-nums; }
+  .hint { font-size: 11px; color: #778; margin-top: 10px; line-height: 1.5; }
+  .hint b { color: #aab; }
+</style>
+</head>
+<body>
+<canvas id="glCanvas"></canvas>
+
+<div id="panel">
+  <h1>交互式 2D 分形 · Sierpinski 垫片</h1>
+
+  <div class="group">
+    <label>渲染模式</label>
+    <div class="radio-group">
+      <label><input type="radio" name="renderMode" value="points" checked> 点云（混沌游戏 · POINTS）</label>
+      <label><input type="radio" name="renderMode" value="lines"> 线框（递归细分 · LINES）</label>
+      <label><input type="radio" name="renderMode" value="triangles"> 实体（递归细分 · TRIANGLES）</label>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="row"><label for="pointCount">顶点数</label><span class="val" id="pointCountVal">5000</span></div>
+    <input type="range" id="pointCount" min="1000" max="50000" step="1000" value="5000">
+  </div>
+
+  <div class="group">
+    <div class="row"><label for="depth">递归深度</label><span class="val" id="depthVal">4</span></div>
+    <input type="range" id="depth" min="0" max="6" step="1" value="4">
+  </div>
+
+  <div class="group">
+    <div class="row"><label for="pointSize">点大小</label><span class="val" id="pointSizeVal">2.0</span></div>
+    <input type="range" id="pointSize" min="1" max="10" step="0.5" value="2">
+  </div>
+
+  <div class="group">
+    <label for="colorScheme">配色方案</label>
+    <select id="colorScheme">
+      <option value="0">冰蓝</option>
+      <option value="1">暖橙</option>
+      <option value="2">紫罗兰</option>
+    </select>
+  </div>
+
+  <div class="hint">
+    键盘：<b>1 / 2 / 3</b> 切换模式；<b>空格</b> 暂停/继续点云生长。<br>
+    鼠标：<b>左键拖动</b> 平移，<b>滚轮</b> 缩放。
+  </div>
+</div>
+
+<!-- 教材风格工具库 -->
+<script src="Common/webgl-utils.js"></script>
+<script src="Common/MV.js"></script>
+<script src="Common/initShaders.js"></script>
+<!-- 业务逻辑（几何 / 交互 / UI / 主程序 分文件） -->
+<script src="js/geometry.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/interaction.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
