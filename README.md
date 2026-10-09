@@ -4,6 +4,12 @@
 
 ## 运行方式
 
+**在线体验（推荐）**
+
+直接访问：[https://xiansheng34.github.io/cg-ap1/](https://xiansheng34.github.io/cg-ap1/)
+
+**本地运行**
+
 ```bash
 # 在项目根目录启动任意静态服务器，例如：
 python -m http.server 8000
@@ -81,7 +87,3 @@ README.md
 - 点云模式（混沌游戏）：![点云模式](./screenshots/points.png)
 - 线框模式（递归细分）：![线框模式](./screenshots/lines.png)
 - 实体模式（递归细分）：![实体模式](./screenshots/triangles.png)
-
-
-
-
