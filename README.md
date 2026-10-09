@@ -4,6 +4,12 @@
 
 ## 运行方式
 
+**在线体验（推荐）**
+
+直接访问：[https://xiansheng34.github.io/cg-ap1/](https://xiansheng34.github.io/cg-ap1/)
+
+**本地运行**
+
 ```bash
 # 在项目根目录启动任意静态服务器，例如：
 python -m http.server 8000
