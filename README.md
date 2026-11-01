@@ -87,7 +87,3 @@ README.md
 - 点云模式（混沌游戏）：![点云模式](./screenshots/points.png)
 - 线框模式（递归细分）：![线框模式](./screenshots/lines.png)
 - 实体模式（递归细分）：![实体模式](./screenshots/triangles.png)
-
-
-
-

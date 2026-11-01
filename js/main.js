@@ -142,7 +142,15 @@
       if (key === '1') setMode('points');
       else if (key === '2') setMode('lines');
       else if (key === '3') setMode('triangles');
-      else if (key === ' ') state.paused = !state.paused;
+      else if (key === ' ') {
+        // 生长已结束时按空格直接从头重播，保证按键立即有可见效果
+        if (state.mode === 'points' && state.currentCount >= state.pointCount) {
+          state.currentCount = 0;
+          state.paused = false;
+        } else {
+          state.paused = !state.paused;
+        }
+      }
     }
   });
 
